@@ -1,0 +1,32 @@
+.mobileMenu_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 4rem;
+  background-color: var(--primary-color);
+  height: 100vh;
+  color: var(--white-text-color);
+  gap: 2rem;
+  width: 70%;
+  position: absolute;
+}
+
+.closeMenu {
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  width: 30%;
+}
+
+.mobileMenu_profileImgContainer {
+  border: 1px solid black;
+  border-radius: 999px;
+  background-color: #dddddd;
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
