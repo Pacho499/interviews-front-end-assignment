@@ -30,18 +30,9 @@
 
 /* From laptop */
 
-@media screen and (min-width: 1260px, max-width:1400px) {
+@media screen and (min-width: 1260px) {
   .homePage-cards-Container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-  }
-}
-
-/* From Desktop */
-
-@media screen and (min-width: 1400px) {
-  .homePage-cards-Container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }
