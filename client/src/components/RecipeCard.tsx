@@ -2,12 +2,7 @@ import { useContext } from "react";
 import "../styles/RecipeCard.css";
 import { RecipeCardProps } from "../types/components";
 import { Context } from "../main";
-import { getCuisine, getDiet, getDifficulty } from "../utils/common";
-import {
-  GetDifficultyParams,
-  GetDietParams,
-  GetCuisineParams,
-} from "../types/commonfunctions";
+import { getAppConstants } from "../utils/common";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartSimple,
@@ -18,24 +13,7 @@ import {
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const appConstants = useContext(Context);
 
-  //Create variables to get all appConstant names
-  const difficultyParams: GetDifficultyParams = {
-    difficultyId: recipe.difficultyId,
-    allDifficulties: appConstants.difficulties,
-  };
-
-  const dietParams: GetDietParams = {
-    allDiets: appConstants.diets,
-    dietId: recipe.dietId,
-  };
-
-  const cuisineParams: GetCuisineParams = {
-    allCuisines: appConstants.cuisines,
-    cuisineId: recipe.cuisineId,
-  };
-
   //render function
-
   const renderIngredients = () => {
     return recipe.ingredients.map((ingredient, index) => {
       return <li key={index}>{ingredient}</li>;
@@ -55,17 +33,19 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           <div className="recipeCard-detailContainer">
             <h5>Information</h5>
             <p>
-              <FontAwesomeIcon icon={faGlobe} /> {getCuisine(cuisineParams)}
+              <FontAwesomeIcon icon={faGlobe} />{" "}
+              {getAppConstants(recipe.cuisineId, appConstants.cuisines)}
             </p>
             <p>
-              <FontAwesomeIcon icon={faUtensils} /> {getDiet(dietParams)}
+              <FontAwesomeIcon icon={faUtensils} />{" "}
+              {getAppConstants(recipe.dietId, appConstants.diets)}
             </p>
             <p>
               <FontAwesomeIcon icon={faChartSimple} />{" "}
-              {getDifficulty(difficultyParams)}
+              {getAppConstants(recipe.difficultyId, appConstants.difficulties)}
             </p>
           </div>
-          <div className="recipeCard-detailContainer">
+          <div className="recipeCard-detailContainer ingredients">
             <h5>Ingredients</h5>
             <ul>{renderIngredients()}</ul>
           </div>
