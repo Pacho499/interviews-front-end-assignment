@@ -1,0 +1,47 @@
+.homePage-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.SearchButton {
+  background-color: var(--secondary-color);
+  color: var(--white-text-color);
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  width: 8rem;
+  margin: auto;
+  transition: border 300ms linear;
+}
+
+.SearchButton:hover {
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  background-size: 150% 150%;
+  border-color: var(--secondary-color);
+  transition: all 300ms linear;
+  animation: bgAnimated 2s infinite linear;
+}
+
+/* From laptop */
+
+@media screen and (min-width: 1260px, max-width:1400px) {
+  .homePage-cards-Container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* From Desktop */
+
+@media screen and (min-width: 1400px) {
+  .homePage-cards-Container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

@@ -46,6 +46,8 @@ p {
   box-sizing: border-box;
 }
 
+/* animations */
+
 .slideInLeft {
   animation: slideIn 300ms linear;
 }
@@ -95,5 +97,21 @@ p {
   }
   to {
     transform: translate(-100%, 0);
+  }
+}
+
+.bgAnimated {
+  animation: bgAnimated 2s infinite linear;
+}
+
+@keyframes bgAnimated {
+  0% {
+    background-position: 0 -50%;
+  }
+  50% {
+    background-position: 100% 20%;
+  }
+  100% {
+    background-position: 0 85%;
   }
 }
