@@ -14,6 +14,7 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [fetchedAll, setFetchedAll] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  let recipesFound = recipesToRender.length !== 0;
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -41,18 +42,9 @@ const Homepage = () => {
   //renderFunction
 
   const RenderRecipeCards = () => {
-    if (recipesToRender.length === 0) {
-      return (
-        <div className="homepage-error-container">
-          <h5>We didn't find any recipes, try changing the filters.</h5>
-          <FontAwesomeIcon icon={faFaceFrown} size="2x" />
-        </div>
-      );
-    } else {
-      return recipesToRender.map((recipe, id) => {
-        return <RecipeCard key={id} recipe={recipe} />;
-      });
-    }
+    return recipesToRender.map((recipe, id) => {
+      return <RecipeCard key={id} recipe={recipe} />;
+    });
   };
 
   return (
@@ -61,7 +53,14 @@ const Homepage = () => {
       <div className="homePage-container">
         <div>
           <h1>Welcome to Recipe Book app</h1>
-          <h4>Here you can find all types of recipe</h4>
+          {recipesFound ? (
+            <h4>Here you can find all types of recipe</h4>
+          ) : (
+            <div className="homepage-error-container">
+              <h5>We didn't find any recipes, try changing the filters.</h5>
+              <FontAwesomeIcon icon={faFaceFrown} size="2x" />
+            </div>
+          )}
         </div>
         <Filters
           handleRecipeToRender={handleRecipeToRender}
@@ -75,9 +74,11 @@ const Homepage = () => {
         ) : fetchedAll ? (
           <h5>You have fetched all the recipes of the application</h5>
         ) : (
-          <button className="primaryButton" onClick={() => setPage(page + 1)}>
-            <p>Find new Recipes</p>
-          </button>
+          recipesFound && (
+            <button className="primaryButton" onClick={() => setPage(page + 1)}>
+              <p>Find new Recipes</p>
+            </button>
+          )
         )}
       </div>
     </>

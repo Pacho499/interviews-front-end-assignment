@@ -101,19 +101,22 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
               <p>Search</p>
               <FontAwesomeIcon icon={faSearch} />
             </button>
+            <button
+              onClick={() => {
+                setIsOpen(false);
+              }}
+              className="primaryButton"
+            >
+              <p>Close</p>
+              <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
           </div>
-          <button
-            onClick={() => {
-              setIsOpen(false);
-            }}
-            className="primaryButton"
-          >
-            <p>Close</p>
-            <FontAwesomeIcon icon={faCircleXmark} />
-          </button>
         </div>
       ) : (
-        <button className="primaryButton" onClick={() => setIsOpen(true)}>
+        <button
+          className="filters-button-openFilters primaryButton "
+          onClick={() => setIsOpen(true)}
+        >
           <p>open filters</p>
           <FontAwesomeIcon icon={faFilter} />
         </button>
