@@ -18,7 +18,7 @@ const Dropdown = ({ label, options, setFilter, inputName }: DroprdownProps) => {
       {isOpen &&
         options.map((option) => {
           return (
-            <div>
+            <div key={option.id}>
               <label className="dropdown-checkbox-container">
                 <input
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
