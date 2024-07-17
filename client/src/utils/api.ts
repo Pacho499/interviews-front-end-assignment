@@ -30,7 +30,7 @@ const getUrlForFilterCall = (filters: Filters) => {
   for (let [key, value] of Object.entries(filters)) {
     if (value !== "") {
       if (index === 0) {
-        url = url + `recipes?${key}=${value}`;
+        url = url + `${key}=${value}`;
         index = index + 1;
       } else {
         url = url + `&${key}=${value}`;
@@ -44,6 +44,6 @@ const getUrlForFilterCall = (filters: Filters) => {
 
 export const getFilteredRecipes = async (filters: Filters) => {
   const url = getUrlForFilterCall(filters);
-  const res = await axios.get(`${defaultApiURL}${url}`);
+  const res = await axios.get(`${defaultApiURL}recipes?${url}`);
   return res.data;
 };
