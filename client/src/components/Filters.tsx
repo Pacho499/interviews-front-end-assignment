@@ -20,7 +20,28 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
     cuisineId: "",
     difficultyId: "",
   });
+  const [onCloseBtnFilter, setOnCloseBtnFilter] = useState<boolean>(false);
+  const [onCloseMenuFilter, setOnCloseMenuFilter] = useState<boolean>(false);
   const context = useContext(Context);
+
+  //handle animations
+
+  const handleFilterAnimation = (isView: boolean) => {
+    //if isView trigger filterbutton close animation else trigger menu close animation
+    if (isView) {
+      setOnCloseBtnFilter(true);
+      setTimeout(() => {
+        setIsOpen(isView);
+        setOnCloseBtnFilter(false);
+      }, 250);
+    } else {
+      setOnCloseMenuFilter(true);
+      setTimeout(() => {
+        setIsOpen(isView);
+        setOnCloseMenuFilter(false);
+      }, 250);
+    }
+  };
 
   // handle all filters
 
@@ -41,10 +62,10 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
   const getFilterRecipe = async () => {
     const recipes = await getFilteredRecipes(filters);
     handleRecipeToRender(recipes);
-    setIsOpen(false);
+    handleFilterAnimation(false);
   };
 
-  const cleanFilters = async () => {
+  const clearFilters = async () => {
     debugger;
     setFilters({
       q: "",
@@ -53,13 +74,17 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
       difficultyId: "",
     });
     handleRecipeToRender(firstCallRecipes);
-    setIsOpen(false);
+    handleFilterAnimation(false);
   };
 
   return (
     <>
       {isOpen ? (
-        <div className="filters-container">
+        <div
+          className={`filters-container ${
+            onCloseMenuFilter ? "slideOutLeft" : "slideInLeft"
+          }`}
+        >
           <div className="filters-searchbar-container">
             <label className="filters-searchbar-label" htmlFor="searchbar">
               SearchBar
@@ -93,7 +118,7 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
             inputName="difficulty"
           />
           <div className="filters-buttons-container">
-            <button onClick={() => cleanFilters()} className="primaryButton">
+            <button onClick={() => clearFilters()} className="primaryButton">
               <p>Clear Filters</p>
               <FontAwesomeIcon icon={faFilterCircleXmark} />
             </button>
@@ -102,9 +127,7 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
               <FontAwesomeIcon icon={faSearch} />
             </button>
             <button
-              onClick={() => {
-                setIsOpen(false);
-              }}
+              onClick={() => handleFilterAnimation(false)}
               className="primaryButton"
             >
               <p>Close</p>
@@ -114,8 +137,10 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
         </div>
       ) : (
         <button
-          className="filters-button-openFilters primaryButton "
-          onClick={() => setIsOpen(true)}
+          className={`filters-button-openFilters ${
+            onCloseBtnFilter ? "slideOutLeft" : "slideInLeft"
+          } `}
+          onClick={() => handleFilterAnimation(true)}
         >
           <p>open filters</p>
           <FontAwesomeIcon icon={faFilter} />

@@ -42,6 +42,31 @@
   gap: 1rem;
 }
 
+.filters-button-openFilters {
+  background-color: var(--primary-color);
+  color: var(--black-text-color);
+  padding: 0.5rem;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  width: 8rem;
+  margin: auto;
+  transition: border 300ms linear;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.filters-button-openFilters:hover {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  background-size: 150% 150%;
+  border-color: var(--primary-color);
+  transition: all 300ms linear;
+}
+
 /* from laptop */
 
 @media screen and (min-width: 1260px) {
