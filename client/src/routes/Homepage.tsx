@@ -5,6 +5,7 @@ import { getRecipes } from "../utils/api.ts";
 import RecipeCard from "../components/RecipeCard.tsx";
 import "../styles/Homepage.css";
 import Spinner from "../components/Spinner.tsx";
+import Filters from "../components/Filters.tsx";
 const Homepage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [page, setPage] = useState(1);
@@ -39,8 +40,11 @@ const Homepage = () => {
     <>
       <Header />
       <div className="homePage-container">
-        <h1>Welcome to Recipe Book app</h1>
-        <h4>Here you can find all types of recipe</h4>
+        <div>
+          <h1>Welcome to Recipe Book app</h1>
+          <h4>Here you can find all types of recipe</h4>
+        </div>
+        <Filters />
         <section className="homePage-cards-Container">
           {RenderRecipeCards()}
         </section>
@@ -49,7 +53,7 @@ const Homepage = () => {
         ) : fetchedAll ? (
           <h5>You have fetched all the recipes of the application</h5>
         ) : (
-          <button className="SearchButton" onClick={() => setPage(page + 1)}>
+          <button className="primaryButton" onClick={() => setPage(page + 1)}>
             <p>Find new Recipes</p>
           </button>
         )}

@@ -1,0 +1,41 @@
+.filters-container {
+  width: 80%;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.filters-searchbar-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 12rem;
+}
+
+.filters-searchbar-label {
+  font-size: 1.2rem;
+  padding: 0 0.5rem;
+  font-weight: bold;
+}
+
+.filters-searchbar {
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid var(--secondary-color);
+}
+
+.filters-searchbar:focus {
+  border: 2px solid var(--primary-color);
+}
+
+.filters-buttons-container {
+  display: flex;
+  gap: 1rem;
+}
