@@ -1,3 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 /* Colors */
 :root {
   --primary-color: #ff5003;
@@ -40,10 +46,32 @@ p {
   font-size: 1rem;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+/* buttons */
+
+.primaryButton {
+  background-color: var(--secondary-color);
+  color: var(--white-text-color);
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  width: 8rem;
+  margin: auto;
+  transition: border 300ms linear;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.primaryButton:hover {
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  background-size: 150% 150%;
+  border-color: var(--secondary-color);
+  transition: all 300ms linear;
+  animation: bgAnimated 2s infinite linear;
 }
 
 /* animations */
