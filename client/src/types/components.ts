@@ -15,8 +15,13 @@ export interface RecipeCardProps {
 }
 
 export interface DroprdownProps {
-  id: string;
-  name: string;
   label: string;
   options: Cuisine[] | Difficulty[] | Diet[];
+  setFilter: (checkFromChild: string) => void;
+  inputName: string;
+}
+
+export interface FiltersProps {
+  handleRecipeToRender: (recipeFromChild: Recipe[]) => void;
+  firstCallRecipes: Recipe[];
 }
