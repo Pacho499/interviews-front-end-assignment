@@ -30,8 +30,11 @@ const FormIngredients = ({
   };
 
   return (
-    <div className={`input-container ${error && "input-error"}`}>
-      <label className="label" htmlFor="recipeTitle">
+    <div className="input-container">
+      <label
+        className={`label ${error && "label-error"}`}
+        htmlFor="recipeTitle"
+      >
         Ingredients *
       </label>
       <div>

@@ -97,6 +97,13 @@ const NewRecipe = () => {
             ingredients={recipe.ingredients}
             error={errors?.ingredients}
           />
+          <div className="input-container">
+            <p className={`label ${errors.image && "label-error"}`}>Image *</p>
+            <input type="file" id="image" onChange={handleImage} hidden />
+            <label className="fileInput" htmlFor="image">
+              Choose image
+            </label>
+          </div>
           <Dropdown
             label="Type of Cuisine *"
             options={context.cuisines}
@@ -121,7 +128,7 @@ const NewRecipe = () => {
             isForm
             error={errors?.difficultyId}
           />
-          <input type="file" onChange={handleImage} />
+          <span>All field with * are required</span>
           <button
             className="primaryButton"
             onClick={async (e) => {
