@@ -11,6 +11,7 @@ interface handleInputValueProps {
 const FormIngredients = ({
   handleIngredients,
   ingredients,
+  error,
 }: FormIngredientsProps) => {
   const addIngredient = () => {
     const newIngredient = [...ingredients, ""];
@@ -29,7 +30,7 @@ const FormIngredients = ({
   };
 
   return (
-    <div className="input-container">
+    <div className={`input-container ${error && "input-error"}`}>
       <label className="label" htmlFor="recipeTitle">
         Ingredients *
       </label>

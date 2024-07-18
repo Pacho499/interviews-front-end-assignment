@@ -20,6 +20,7 @@ export interface DroprdownProps {
   setFilter: (checkFromChild: string) => void;
   inputName: string;
   isForm?: boolean;
+  error?: string;
 }
 
 export interface FiltersProps {
@@ -30,4 +31,5 @@ export interface FiltersProps {
 export interface FormIngredientsProps {
   handleIngredients: (ingredientsFromChild: string[]) => void;
   ingredients: string[];
+  error?: string;
 }

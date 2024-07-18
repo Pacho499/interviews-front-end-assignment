@@ -56,13 +56,14 @@ const NewRecipe = () => {
     setErrors(errFromFunction);
   };
 
+  console.log(errors);
   return (
     <>
       <Header />
       <div>
         <h1 className="newRecipe-title">Add a new Recipe!</h1>
         <form className="newRecipe-form-container">
-          <div className={"input-container"}>
+          <div className={`input-container ${errors?.name && "input-error"}`}>
             <label className="label" htmlFor="title">
               Name *
             </label>
@@ -75,7 +76,11 @@ const NewRecipe = () => {
               id="title"
             />
           </div>
-          <div className="input-container">
+          <div
+            className={`input-container ${
+              errors?.instructions && "input-error"
+            }`}
+          >
             <label className="label" htmlFor="instructions">
               Instructions *
             </label>
@@ -90,6 +95,7 @@ const NewRecipe = () => {
           <FormIngredients
             handleIngredients={handleIngredients}
             ingredients={recipe.ingredients}
+            error={errors?.ingredients}
           />
           <Dropdown
             label="Type of Cuisine *"
@@ -97,6 +103,7 @@ const NewRecipe = () => {
             setFilter={handleCuisine}
             inputName="cuisine"
             isForm
+            error={errors?.cuisineId}
           />
           <Dropdown
             label="Type of Diet *"
@@ -104,6 +111,7 @@ const NewRecipe = () => {
             setFilter={handleDiet}
             inputName="diet"
             isForm
+            error={errors?.dietId}
           />
           <Dropdown
             label="Difficulty *"
@@ -111,6 +119,7 @@ const NewRecipe = () => {
             setFilter={handleDifficulty}
             inputName="difficulty"
             isForm
+            error={errors?.difficultyId}
           />
           <input type="file" onChange={handleImage} />
           <button
@@ -123,6 +132,11 @@ const NewRecipe = () => {
             <p>Add Recipe</p>
             <FontAwesomeIcon icon={faCirclePlus} />
           </button>
+          {Object.keys(errors).length > 0 && (
+            <h5 className="label-error">
+              Check all the field, you've missed something!
+            </h5>
+          )}
         </form>
       </div>
     </>

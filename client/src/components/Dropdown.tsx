@@ -10,12 +10,13 @@ const Dropdown = ({
   setFilter,
   inputName,
   isForm,
+  error,
 }: DroprdownProps) => {
   const [isOpen, setIsOpen] = useState(isForm);
   return (
     <div className="dropdown-container">
       <div className="dropdown-label" onClick={() => setIsOpen(!isOpen)}>
-        <h5>{label}</h5>
+        <h5 className={error && "label-error"}>{label}</h5>
         {!isForm && (
           <FontAwesomeIcon
             className={isOpen ? "open" : "closed"}
