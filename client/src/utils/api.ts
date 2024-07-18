@@ -8,7 +8,7 @@ import {
 const defaultApiURL = "http://localhost:8080/";
 
 export const getRecipes = async ({ page }: { page: number }) => {
-  const res = await axios.get(`${defaultApiURL}recipes?_page=${page}&_limit=5`);
+  const res = await axios.get(`${defaultApiURL}recipes?_page=${page}&_limit=4`);
   return res.data;
 };
 
@@ -89,4 +89,6 @@ export const uploadRecipe = async ({
       "Content-Type": "multipart/form-data",
     },
   });
+
+  return window.location.replace("/");
 };
