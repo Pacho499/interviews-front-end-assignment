@@ -74,6 +74,31 @@ p {
   animation: bgAnimated 2s infinite linear;
 }
 
+/* inputs */
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.label {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.input {
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid var(--secondary-color);
+}
+
+.input:focus {
+  border: 2px solid var(--primary-color);
+}
+
 /* animations */
 
 .slideInLeft {

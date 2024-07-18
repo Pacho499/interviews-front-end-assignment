@@ -4,16 +4,24 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
-const Dropdown = ({ label, options, setFilter, inputName }: DroprdownProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Dropdown = ({
+  label,
+  options,
+  setFilter,
+  inputName,
+  isForm,
+}: DroprdownProps) => {
+  const [isOpen, setIsOpen] = useState(isForm);
   return (
     <div className="dropdown-container">
       <div className="dropdown-label" onClick={() => setIsOpen(!isOpen)}>
         <h5>{label}</h5>
-        <FontAwesomeIcon
-          className={isOpen ? "open" : "closed"}
-          icon={faArrowRight}
-        />
+        {!isForm && (
+          <FontAwesomeIcon
+            className={isOpen ? "open" : "closed"}
+            icon={faArrowRight}
+          />
+        )}
       </div>
       {isOpen &&
         options.map((option) => {
@@ -27,6 +35,7 @@ const Dropdown = ({ label, options, setFilter, inputName }: DroprdownProps) => {
                   type="radio"
                   value={option.id}
                   name={inputName}
+                  required={isForm}
                 />
                 {option.name}
                 <span className="checkmark"></span>

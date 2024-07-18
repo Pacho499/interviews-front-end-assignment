@@ -1,5 +1,9 @@
 import axios from "axios";
-import { Filters } from "../types/functionsParams";
+import {
+  Filters,
+  FormErrors,
+  UploadRecipeParams,
+} from "../types/functionsParams";
 
 const defaultApiURL = "http://localhost:8080/";
 
@@ -46,4 +50,37 @@ export const getFilteredRecipes = async (filters: Filters) => {
   const url = getUrlForFilterCall(filters);
   const res = await axios.get(`${defaultApiURL}recipes?${url}`);
   return res.data;
+};
+
+export const uploadRecipe = async ({
+  recipe,
+  handleErrors,
+}: UploadRecipeParams) => {
+  let errors: FormErrors = {};
+
+  for (let [key, value] of Object.entries(recipe)) {
+    if (value === "") {
+      errors[key] = key + " vuoto";
+    }
+  }
+
+  if (Object.keys(errors).length > 0) {
+    handleErrors(errors);
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("name", recipe.name);
+  formData.append("ingredients", recipe.ingredients.join(","));
+  formData.append("instructions", recipe.instructions);
+  formData.append("cuisineId", recipe.cuisineId);
+  formData.append("dietId", recipe.dietId);
+  formData.append("difficultyId", recipe.difficultyId);
+  if (recipe.image !== null) formData.append("image", recipe.image);
+
+  await axios.post(`${defaultApiURL}recipes`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };

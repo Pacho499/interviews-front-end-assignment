@@ -19,9 +19,15 @@ export interface DroprdownProps {
   options: Cuisine[] | Difficulty[] | Diet[];
   setFilter: (checkFromChild: string) => void;
   inputName: string;
+  isForm?: boolean;
 }
 
 export interface FiltersProps {
   handleRecipeToRender: (recipeFromChild: Recipe[]) => void;
   firstCallRecipes: Recipe[];
+}
+
+export interface FormIngredientsProps {
+  handleIngredients: (ingredientsFromChild: string[]) => void;
+  ingredients: string[];
 }

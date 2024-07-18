@@ -7,6 +7,7 @@
   border-bottom: 2px solid black;
   padding: 0.5rem;
   user-select: none;
+  width: 100%;
 }
 
 .dropdown-label {
