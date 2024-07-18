@@ -59,8 +59,14 @@ export const uploadRecipe = async ({
   let errors: FormErrors = {};
 
   for (let [key, value] of Object.entries(recipe)) {
-    if (value === "") {
+    if (value === "" || value === null) {
       errors[key] = key + " vuoto";
+    }
+
+    if (key === "ingredients") {
+      for (let ingredient in value) {
+        if (value[ingredient] === "") errors[key] = key + " vuoto";
+      }
     }
   }
 
