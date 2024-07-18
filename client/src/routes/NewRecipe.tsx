@@ -28,6 +28,10 @@ const NewRecipe = () => {
     setRecipe({ ...recipe, name: e.target.value });
   };
 
+  const handleInstructions = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setRecipe({ ...recipe, instructions: e.target.value });
+  };
+
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     setRecipe({ ...recipe, image: e.target.files && e.target.files[0] });
   };
@@ -80,6 +84,7 @@ const NewRecipe = () => {
               id="instructions"
               rows={10}
               required
+              onChange={handleInstructions}
             ></textarea>
           </div>
           <FormIngredients
