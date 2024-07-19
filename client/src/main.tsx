@@ -10,6 +10,7 @@ import {
   getAlldiets,
   getAllDifficulties,
 } from "./utils/api.ts";
+import NewRecipe from "./routes/NewRecipe.tsx";
 
 const fetchAppCommonContants = async () => {
   const difficulties = await getAllDifficulties();
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Homepage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/newRecipe",
+    element: <NewRecipe />,
     errorElement: <ErrorPage />,
   },
 ]);

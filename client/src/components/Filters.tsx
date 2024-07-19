@@ -61,21 +61,26 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
 
   const getFilterRecipe = async () => {
     const recipes = await getFilteredRecipes(filters);
-    handleRecipeToRender(recipes);
+    handleRecipeToRender({ recipesFromChild: recipes, isFilterd: true });
     handleFilterAnimation(false);
   };
 
   const clearFilters = async () => {
-    debugger;
     setFilters({
       q: "",
       dietId: "",
       cuisineId: "",
       difficultyId: "",
     });
-    handleRecipeToRender(firstCallRecipes);
+
+    handleRecipeToRender({
+      recipesFromChild: firstCallRecipes,
+      isFilterd: false,
+    });
     handleFilterAnimation(false);
   };
+
+  console.log(filters);
 
   return (
     <>
@@ -104,18 +109,21 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
             options={context.cuisines}
             setFilter={setCuisineFilter}
             inputName="cuisine"
+            value={filters.cuisineId}
           />
           <Dropdown
             label="Type of Diet"
             options={context.diets}
             setFilter={setDietsFilter}
             inputName="diets"
+            value={filters.dietId}
           />
           <Dropdown
             label="Difficulty"
             options={context.difficulties}
             setFilter={setDifficultyFilter}
             inputName="difficulty"
+            value={filters.difficultyId}
           />
           <div className="filters-buttons-container">
             <button onClick={() => clearFilters()} className="primaryButton">

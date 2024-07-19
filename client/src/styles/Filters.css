@@ -71,15 +71,23 @@
 
 @media screen and (min-width: 1260px) {
   .filters-button-openFilters {
-    position: absolute;
+    position: fixed;
     top: 16rem;
     left: 2rem;
   }
 
   .filters-container {
     width: 25%;
-    position: absolute;
+    position: fixed;
+    overflow-y: scroll;
     top: 16rem;
     left: 2rem;
+    height: 60%;
+    max-height: 30rem;
+    box-shadow: 2px 4px 10px black;
+  }
+
+  .filters-container::-webkit-scrollbar {
+    display: none;
   }
 }

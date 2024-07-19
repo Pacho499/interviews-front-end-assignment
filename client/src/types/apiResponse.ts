@@ -1,7 +1,7 @@
 export interface Recipe {
   id: string;
   name: string;
-  ingredients: [string];
+  ingredients: string[];
   instructions: string;
   cuisineId: string;
   dietId: string;
@@ -22,4 +22,14 @@ export interface Diet {
 export interface Cuisine {
   id: string;
   name: string;
+}
+
+export interface RecipeForm {
+  name: string;
+  ingredients: string[];
+  instructions: string;
+  cuisineId: string;
+  dietId: string;
+  difficultyId: string;
+  image: File | null;
 }

@@ -33,6 +33,7 @@ const Header = () => {
         />
       </div>
       <div className="header-container header-laptop-nav">
+        <LinkButton text="Home" linkTo="/" />
         <LinkButton text="Add Recipe" linkTo="/newRecipe" />
         <div className="header-profileImgContainer">
           <FontAwesomeIcon icon={faUser} color="black" />

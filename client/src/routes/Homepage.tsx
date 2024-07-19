@@ -8,12 +8,15 @@ import Spinner from "../components/Spinner.tsx";
 import Filters from "../components/Filters.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFaceFrown } from "@fortawesome/free-solid-svg-icons";
+import { HandleFiltersHP } from "../types/components.ts";
+
 const Homepage = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [recipesToRender, setRecipeToRender] = useState<Recipe[]>([]);
   const [page, setPage] = useState(1);
   const [fetchedAll, setFetchedAll] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   let recipesFound = recipesToRender.length !== 0;
 
   useEffect(() => {
@@ -35,8 +38,9 @@ const Homepage = () => {
     setRecipeToRender(recipes);
   }, [recipes]);
 
-  const handleRecipeToRender = (recipesFromChild: Recipe[]) => {
-    setRecipeToRender(recipesFromChild);
+  const handleRecipeToRender = (valuesFromChild: HandleFiltersHP) => {
+    setIsFiltered(valuesFromChild.isFilterd);
+    setRecipeToRender(valuesFromChild.recipesFromChild);
   };
 
   //renderFunction
@@ -74,7 +78,8 @@ const Homepage = () => {
         ) : fetchedAll ? (
           <h5>You have fetched all the recipes of the application</h5>
         ) : (
-          recipesFound && (
+          // Don't need button when filtered we already retrieve all the recipes from db in that case
+          !isFiltered && (
             <button className="primaryButton" onClick={() => setPage(page + 1)}>
               <p>Find new Recipes</p>
             </button>
