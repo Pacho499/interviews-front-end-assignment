@@ -7,7 +7,7 @@ const CommentBox = ({ commentData }: CommentBoxProps) => {
   const renderDate = () => {
     const date = new Date(commentData.date);
     return (
-      <span>{`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`}</span>
+      <span>{`${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`}</span>
     );
   };
 
