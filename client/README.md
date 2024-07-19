@@ -1,30 +1,61 @@
-# React + TypeScript + Vite
+![alt text](https://www.zooplus.it/magazine/wp-content/uploads/2024/01/capibara.jpeg)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Recipe Book App
 
-Currently, two official plugins are available:
+### Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Recipe Book App is a web application that allows users to share and browse their own recipes. Users can add new recipes, filter existing ones, view recipe details, and leave comments.
 
-## Expanding the ESLint configuration
+## Main feature (Challenge)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **View Recipes** : Users can view all available recipes in the app.
 
-- Configure the top-level `parserOptions` property like this:
+2. **Add Recipes**: Users can add their own recipes using a simple form.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+3. **Filter Recipes**: Users can filter recipes based on cuisine, difficulty and dietary preferences (e.g., vegetarian, gluten-free).
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+4. **View Recipe Details**: Users can view the details of a single recipe and leave comments.
+
+## Technologies
+
+- **React**: Used for building the user interface.
+
+- **TypeScript**: Used to provide more stability to the code by adding types to classic JavaScript.
+
+- **Axios**: Used for making HTTP requests.
+
+- **CSS**: Used instead of Tailwind because, when used with proper class naming conventions, it can make the code cleaner.
+
+- **FontAwesome**: Used for Icons.
+
+- **Vite**: Used as the bundler.
+
+- **ESLint**: Used for maintaining consistent code style.
+
+## How to run
+
+To install and set up the project, follow these steps:
+
+1. Start the server. Check the README inside the server folder for instructions on how to start the server.
+
+1. Clone the project repository to your local directory.
+
+1. From the root folder of the project, run the command:
+
+   ```bash
+   cd client
+   ```
+
+1. Once in the client folder, run the command:
+
+   ```bash
+   npm install
+   ```
+
+1. After installing the dependencies, start the development server with the command:
+
+   ```bash
+   npm run dev
+   ```
+
+Now you can access the application in your browser at http://localhost:5173.
