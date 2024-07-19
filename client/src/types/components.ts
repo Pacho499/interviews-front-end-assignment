@@ -21,10 +21,18 @@ export interface DroprdownProps {
   inputName: string;
   isForm?: boolean;
   error?: string;
+  value?: string;
+}
+
+// handlers for pass values from child
+
+export interface HandleFiltersHP {
+  isFilterd: boolean;
+  recipesFromChild: Recipe[];
 }
 
 export interface FiltersProps {
-  handleRecipeToRender: (recipeFromChild: Recipe[]) => void;
+  handleRecipeToRender: (valuesFromChild: HandleFiltersHP) => void;
   firstCallRecipes: Recipe[];
 }
 
