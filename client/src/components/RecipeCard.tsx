@@ -9,6 +9,7 @@ import {
   faGlobe,
   faUtensils,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const RecipeCard = ({ recipe }: RecipeCardProps) => {
   const appConstants = useContext(Context);
@@ -21,15 +22,19 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
   };
 
   return (
-    <article className="recipeCard-container">
+    <article className="recipeCard-w-img-container">
       <img
         src={`http://localhost:8080${recipe.image}`}
         alt=""
         className="recipeCard-img"
       />
-      <div>
+      <div className="recipeCard-container">
         <h3 className="recipeCard-title">{recipe.name}</h3>
         <div className="recipeCard-infoContainer">
+          <div className="recipeCard-detailContainer ingredients">
+            <h5>Ingredients</h5>
+            <ul>{renderIngredients()}</ul>
+          </div>
           <div className="recipeCard-detailContainer">
             <h5>Information</h5>
             <p>
@@ -45,11 +50,13 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
               {getAppConstants(recipe.difficultyId, appConstants.difficulties)}
             </p>
           </div>
-          <div className="recipeCard-detailContainer ingredients">
-            <h5>Ingredients</h5>
-            <ul>{renderIngredients()}</ul>
-          </div>
         </div>
+        <Link
+          className="primaryButton recipeCard-btn"
+          to={`/recipeDetail/${recipe.id}`}
+        >
+          Details
+        </Link>
       </div>
     </article>
   );
