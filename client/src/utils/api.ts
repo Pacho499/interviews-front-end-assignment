@@ -81,8 +81,12 @@ export const uploadRecipe = async ({
 }: UploadRecipeParams) => {
   let errors: FormErrors = {};
 
+  const isEmptyString = (str: string) => {
+    return typeof str === "string" && str.trim() === "";
+  };
+
   for (let [key, value] of Object.entries(recipe)) {
-    if (value.trim() === "" || value === null) {
+    if (isEmptyString(value) || value === null) {
       errors[key] = true;
     }
 
@@ -107,13 +111,13 @@ export const uploadRecipe = async ({
   formData.append("difficultyId", recipe.difficultyId);
   if (recipe.image !== null) formData.append("image", recipe.image);
 
-  await axios.post(`${defaultApiURL}recipes`, formData, {
+  const res = await axios.post(`${defaultApiURL}recipes`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
   });
 
-  return window.location.replace("/");
+  return window.location.replace(`/recipeDetail/${res.data.id}`);
 };
 
 export const uploadComment = async ({
