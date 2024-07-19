@@ -1,4 +1,5 @@
-import { Cuisine, Diet, Difficulty, Recipe } from "./apiResponse";
+import { Comment, Cuisine, Diet, Difficulty, Recipe } from "./apiResponse";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export interface MobileMenuProps {
   closeMenu: () => void;
@@ -22,6 +23,16 @@ export interface DroprdownProps {
   isForm?: boolean;
   error?: string;
   value: string;
+}
+
+export interface IconInfoProps {
+  icon: IconProp;
+  infoId: string;
+  infoArray: Cuisine[] | Difficulty[] | Diet[];
+}
+
+export interface CommentBoxProps {
+  commentData: Comment;
 }
 
 // handlers for pass values from child

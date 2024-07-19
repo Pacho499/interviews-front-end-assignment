@@ -1,3 +1,11 @@
+export interface Comment {
+  id: string;
+  comment: string;
+  date: string;
+  recipeId: string;
+  rating: number;
+}
+
 export interface Recipe {
   id: string;
   name: string;
@@ -7,6 +15,7 @@ export interface Recipe {
   dietId: string;
   difficultyId: string;
   image: string;
+  comments?: Comment[];
 }
 
 export interface Difficulty {

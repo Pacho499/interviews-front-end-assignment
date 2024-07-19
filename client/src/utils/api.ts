@@ -7,6 +7,8 @@ import {
 
 const defaultApiURL = "http://localhost:8080/";
 
+// GET CALLS
+
 export const getRecipes = async ({ page }: { page: number }) => {
   const res = await axios.get(`${defaultApiURL}recipes?_page=${page}&_limit=4`);
   return res.data;
@@ -51,6 +53,26 @@ export const getFilteredRecipes = async (filters: Filters) => {
   const res = await axios.get(`${defaultApiURL}recipes?${url}`);
   return res.data;
 };
+
+export const getRecipe = async (recipeId: string) => {
+  const recipe = await axios.get(`${defaultApiURL}recipes/${recipeId}`);
+  const comments = await axios.get(
+    `${defaultApiURL}recipes/${recipeId}/comments`
+  );
+  return {
+    id: recipe.data.id,
+    name: recipe.data.name,
+    ingredients: recipe.data.ingredients,
+    instructions: recipe.data.instructions,
+    cuisineId: recipe.data.cuisineId,
+    dietId: recipe.data.dietId,
+    difficultyId: recipe.data.difficultyId,
+    image: recipe.data.image,
+    comments: comments.data,
+  };
+};
+
+// POST CALLS
 
 export const uploadRecipe = async ({
   recipe,
