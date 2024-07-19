@@ -21,7 +21,7 @@ export interface DroprdownProps {
   inputName: string;
   isForm?: boolean;
   error?: string;
-  value?: string;
+  value: string;
 }
 
 // handlers for pass values from child

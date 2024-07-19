@@ -111,6 +111,7 @@ const NewRecipe = () => {
             inputName="cuisine"
             isForm
             error={errors?.cuisineId}
+            value={recipe.cuisineId}
           />
           <Dropdown
             label="Type of Diet *"
@@ -119,6 +120,7 @@ const NewRecipe = () => {
             inputName="diet"
             isForm
             error={errors?.dietId}
+            value={recipe.dietId}
           />
           <Dropdown
             label="Difficulty *"
@@ -127,6 +129,7 @@ const NewRecipe = () => {
             inputName="difficulty"
             isForm
             error={errors?.difficultyId}
+            value={recipe.difficultyId}
           />
           <span>All field with * are required</span>
           <button
