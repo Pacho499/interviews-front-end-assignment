@@ -49,7 +49,7 @@ const Dropdown = ({
   return (
     <div className="dropdown-container">
       <div className="dropdown-label" onClick={() => setIsOpen(!isOpen)}>
-        <h5 className={error && "label-error"}>{label}</h5>
+        <h5 className={error ? "label-error" : ""}>{label}</h5>
         {!isForm && (
           <FontAwesomeIcon
             className={isOpen ? "open" : "closed"}

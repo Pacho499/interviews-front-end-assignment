@@ -80,8 +80,6 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
     handleFilterAnimation(false);
   };
 
-  console.log(filters);
-
   return (
     <>
       {isOpen ? (

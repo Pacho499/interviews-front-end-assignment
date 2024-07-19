@@ -1,0 +1,11 @@
+.active {
+  color: var(--primary-color);
+}
+
+.no-active {
+  color: grey;
+}
+
+.ratingInput-input:hover {
+  color: var(--primary-color);
+}

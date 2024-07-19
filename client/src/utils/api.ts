@@ -2,10 +2,13 @@ import axios from "axios";
 import {
   Filters,
   FormErrors,
+  UploadCommentParams,
   UploadRecipeParams,
 } from "../types/functionsParams";
 
 const defaultApiURL = "http://localhost:8080/";
+
+// GET CALLS
 
 export const getRecipes = async ({ page }: { page: number }) => {
   const res = await axios.get(`${defaultApiURL}recipes?_page=${page}&_limit=4`);
@@ -52,6 +55,26 @@ export const getFilteredRecipes = async (filters: Filters) => {
   return res.data;
 };
 
+export const getRecipe = async (recipeId: string) => {
+  const recipe = await axios.get(`${defaultApiURL}recipes/${recipeId}`);
+  const comments = await axios.get(
+    `${defaultApiURL}recipes/${recipeId}/comments`
+  );
+  return {
+    id: recipe.data.id,
+    name: recipe.data.name,
+    ingredients: recipe.data.ingredients,
+    instructions: recipe.data.instructions,
+    cuisineId: recipe.data.cuisineId,
+    dietId: recipe.data.dietId,
+    difficultyId: recipe.data.difficultyId,
+    image: recipe.data.image,
+    comments: comments.data,
+  };
+};
+
+// POST CALLS
+
 export const uploadRecipe = async ({
   recipe,
   handleErrors,
@@ -59,13 +82,13 @@ export const uploadRecipe = async ({
   let errors: FormErrors = {};
 
   for (let [key, value] of Object.entries(recipe)) {
-    if (value === "" || value === null) {
-      errors[key] = key + " vuoto";
+    if (value.trim() === "" || value === null) {
+      errors[key] = true;
     }
 
     if (key === "ingredients") {
       for (let ingredient in value) {
-        if (value[ingredient] === "") errors[key] = key + " vuoto";
+        if (value[ingredient] === "") errors[key] = true;
       }
     }
   }
@@ -91,4 +114,30 @@ export const uploadRecipe = async ({
   });
 
   return window.location.replace("/");
+};
+
+export const uploadComment = async ({
+  userComment,
+  recipeId,
+  handleErrors,
+}: UploadCommentParams) => {
+  let errors: FormErrors = {};
+
+  for (let [key, value] of Object.entries(userComment)) {
+    if (value === "" || value === 0) {
+      errors[key] = true;
+    }
+  }
+
+  if (Object.keys(errors).length > 0) {
+    handleErrors(errors);
+    return;
+  }
+
+  const res = await axios.post(
+    `${defaultApiURL}recipes/${recipeId}/comments`,
+    userComment
+  );
+
+  return res.status;
 };

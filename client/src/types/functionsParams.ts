@@ -13,5 +13,15 @@ export interface UploadRecipeParams {
 }
 
 export interface FormErrors {
-  [key: string]: string;
+  [key: string]: boolean;
+}
+
+export interface UploadCommentParams {
+  userComment: {
+    comment: string;
+    rating: number;
+    date: Date;
+  };
+  recipeId: string;
+  handleErrors: (errFromFunction: any) => void;
 }

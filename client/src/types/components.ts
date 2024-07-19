@@ -1,4 +1,5 @@
-import { Cuisine, Diet, Difficulty, Recipe } from "./apiResponse";
+import { Comment, Cuisine, Diet, Difficulty, Recipe } from "./apiResponse";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 
 export interface MobileMenuProps {
   closeMenu: () => void;
@@ -20,8 +21,24 @@ export interface DroprdownProps {
   setFilter: (checkFromChild: string) => void;
   inputName: string;
   isForm?: boolean;
-  error?: string;
+  error?: boolean;
   value: string;
+}
+
+export interface IconInfoProps {
+  icon: IconProp;
+  infoId: string;
+  infoArray: Cuisine[] | Difficulty[] | Diet[];
+}
+
+export interface CommentBoxProps {
+  commentData: Comment;
+  key: number;
+}
+
+export interface RatingInputProps {
+  setRating: (ratingFromChild: number) => void;
+  rating: number;
 }
 
 // handlers for pass values from child
@@ -39,5 +56,5 @@ export interface FiltersProps {
 export interface FormIngredientsProps {
   handleIngredients: (ingredientsFromChild: string[]) => void;
   ingredients: string[];
-  error?: string;
+  error?: boolean;
 }
