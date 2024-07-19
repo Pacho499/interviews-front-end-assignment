@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   Filters,
   FormErrors,
+  UploadCommentParams,
   UploadRecipeParams,
 } from "../types/functionsParams";
 
@@ -81,13 +82,13 @@ export const uploadRecipe = async ({
   let errors: FormErrors = {};
 
   for (let [key, value] of Object.entries(recipe)) {
-    if (value === "" || value === null) {
-      errors[key] = key + " vuoto";
+    if (value.trim() === "" || value === null) {
+      errors[key] = true;
     }
 
     if (key === "ingredients") {
       for (let ingredient in value) {
-        if (value[ingredient] === "") errors[key] = key + " vuoto";
+        if (value[ingredient] === "") errors[key] = true;
       }
     }
   }
@@ -113,4 +114,30 @@ export const uploadRecipe = async ({
   });
 
   return window.location.replace("/");
+};
+
+export const uploadComment = async ({
+  userComment,
+  recipeId,
+  handleErrors,
+}: UploadCommentParams) => {
+  let errors: FormErrors = {};
+
+  for (let [key, value] of Object.entries(userComment)) {
+    if (value === "" || value === 0) {
+      errors[key] = true;
+    }
+  }
+
+  if (Object.keys(errors).length > 0) {
+    handleErrors(errors);
+    return;
+  }
+
+  const res = await axios.post(
+    `${defaultApiURL}recipes/${recipeId}/comments`,
+    userComment
+  );
+
+  return res.status;
 };

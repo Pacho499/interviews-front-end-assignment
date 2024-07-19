@@ -21,7 +21,7 @@ export interface DroprdownProps {
   setFilter: (checkFromChild: string) => void;
   inputName: string;
   isForm?: boolean;
-  error?: string;
+  error?: boolean;
   value: string;
 }
 
@@ -33,6 +33,11 @@ export interface IconInfoProps {
 
 export interface CommentBoxProps {
   commentData: Comment;
+}
+
+export interface RatingInputProps {
+  setRating: (ratingFromChild: number) => void;
+  rating: number;
 }
 
 // handlers for pass values from child
@@ -50,5 +55,5 @@ export interface FiltersProps {
 export interface FormIngredientsProps {
   handleIngredients: (ingredientsFromChild: string[]) => void;
   ingredients: string[];
-  error?: string;
+  error?: boolean;
 }

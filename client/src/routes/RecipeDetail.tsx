@@ -1,12 +1,11 @@
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { Context } from "../main";
 import { Comment, Recipe } from "../types/apiResponse";
 import Spinner from "../components/Spinner";
-import { getRecipe } from "../utils/api";
+import { getRecipe, uploadComment } from "../utils/api";
 import "../styles/RecipeDetail.css";
-
 import {
   faChartSimple,
   faGlobe,
@@ -16,6 +15,9 @@ import {
 import IconInfo from "../components/IconInfo";
 import CommentBox from "../components/CommentBox.tsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RatingInput from "../components/RatingInput.tsx";
+import { FormErrors } from "../types/functionsParams.ts";
+import { MouseEvent } from "react";
 
 const RecipeDetail = () => {
   const { recipeId } = useParams();
@@ -23,21 +25,32 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState<Recipe>();
   const [loading, setLoading] = useState<boolean>(true);
   const [avarageRating, setAvarageRating] = useState(0);
+  const [userComment, setUserComment] = useState({
+    comment: "",
+    rating: 0,
+    date: new Date(),
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [submitComment, setSubmitComment] = useState(false);
+
+  const getRecipeData = async () => {
+    if (recipeId) {
+      const recipe = await getRecipe(recipeId);
+      calculateAvarageRating(recipe.comments);
+      setRecipe(recipe);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getRecipeData = async () => {
-      if (recipeId) {
-        const recipe = await getRecipe(recipeId);
-        calculateAvarageRating(recipe.comments);
-        setRecipe(recipe);
-        setLoading(false);
-      }
-    };
-
+    setSubmitComment(false);
+    setUserComment({
+      comment: "",
+      rating: 0,
+      date: new Date(),
+    });
     getRecipeData();
-  }, []);
-
-  console.log("avarage", avarageRating);
+  }, [submitComment]);
 
   const calculateAvarageRating = (comments: Comment[]) => {
     let totalRating = 0;
@@ -47,7 +60,33 @@ const RecipeDetail = () => {
     }
   };
 
-  console.log(recipe);
+  const handleRating = (ratingFromChild: number) => {
+    setUserComment({ ...userComment, rating: ratingFromChild });
+  };
+
+  const handleComment = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setUserComment({ ...userComment, comment: e.target.value });
+  };
+
+  const handleErrors = (errFromFunction: FormErrors) => {
+    setErrors(errFromFunction);
+  };
+
+  const handleUploadComment = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (recipeId) {
+      const res = await uploadComment({
+        userComment,
+        recipeId,
+        handleErrors,
+      });
+      if (res === 201) {
+        setSubmitComment(true);
+        setErrors({});
+      }
+    }
+  };
+
   return (
     <>
       <Header />
@@ -106,10 +145,40 @@ const RecipeDetail = () => {
           <div className="RecipeDetail-comments-container">
             <article>
               <h3>Comments</h3>
-
               {recipe?.comments?.map((comment) => {
                 return <CommentBox commentData={comment} />;
               })}
+              <div className="comment-container">
+                <h5>Leave your comment</h5>
+                <form>
+                  <div className="input-container">
+                    {errors?.rating && (
+                      <span className="label-error">Insert rating!</span>
+                    )}
+                    <div>
+                      <RatingInput
+                        rating={userComment.rating}
+                        setRating={handleRating}
+                      />
+                    </div>
+                    {errors?.comment && (
+                      <span className="label-error">Insert a comment!</span>
+                    )}
+                    <textarea
+                      onChange={handleComment}
+                      rows={4}
+                      className="input recipeDetail-input"
+                      value={userComment.comment}
+                    />
+                  </div>
+                  <button
+                    onClick={handleUploadComment}
+                    className="primaryButton"
+                  >
+                    Leave comment
+                  </button>
+                </form>
+              </div>
             </article>
           </div>
         </div>

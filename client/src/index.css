@@ -76,6 +76,10 @@ p {
 
 /* inputs */
 
+textarea {
+  resize: none;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;
