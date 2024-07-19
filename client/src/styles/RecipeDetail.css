@@ -27,6 +27,7 @@
   width: 70%;
   margin: auto;
   object-fit: contain;
+  max-width: 20rem;
 }
 
 .recipeDetail-ingredients-container > ul > li {
@@ -39,4 +40,26 @@
 
 .recipeDetail-input {
   margin-top: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .recipeDetail-container {
+    width: 90%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .recipeDetail-recipe-container {
+    width: 50%;
+  }
+
+  .recipeDetail-img {
+    margin: 0;
+    width: 70%;
+    max-width: none;
+  }
+
+  .RecipeDetail-comments-container {
+    width: 50%;
+  }
 }

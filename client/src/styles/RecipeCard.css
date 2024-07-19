@@ -50,7 +50,6 @@
 @media screen and (min-width: 768px) {
   .recipeCard-w-img-container {
     display: flex;
-    max-width: 40rem;
     gap: 2rem;
   }
 
@@ -70,6 +69,7 @@
 
   .recipeCard-container {
     position: relative;
+    width: 100%;
   }
 
   .recipeCard-btn {

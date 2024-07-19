@@ -148,38 +148,35 @@ const RecipeDetail = () => {
               {recipe?.comments?.map((comment) => {
                 return <CommentBox commentData={comment} />;
               })}
-              <div className="comment-container">
-                <h5>Leave your comment</h5>
-                <form>
-                  <div className="input-container">
-                    {errors?.rating && (
-                      <span className="label-error">Insert rating!</span>
-                    )}
-                    <div>
-                      <RatingInput
-                        rating={userComment.rating}
-                        setRating={handleRating}
-                      />
-                    </div>
-                    {errors?.comment && (
-                      <span className="label-error">Insert a comment!</span>
-                    )}
-                    <textarea
-                      onChange={handleComment}
-                      rows={4}
-                      className="input recipeDetail-input"
-                      value={userComment.comment}
+            </article>
+            <div className="comment-container">
+              <h5>Leave your comment</h5>
+              <form>
+                <div className="input-container">
+                  {errors?.rating && (
+                    <span className="label-error">Insert rating!</span>
+                  )}
+                  <div>
+                    <RatingInput
+                      rating={userComment.rating}
+                      setRating={handleRating}
                     />
                   </div>
-                  <button
-                    onClick={handleUploadComment}
-                    className="primaryButton"
-                  >
-                    Leave comment
-                  </button>
-                </form>
-              </div>
-            </article>
+                  {errors?.comment && (
+                    <span className="label-error">Insert a comment!</span>
+                  )}
+                  <textarea
+                    onChange={handleComment}
+                    rows={4}
+                    className="input recipeDetail-input"
+                    value={userComment.comment}
+                  />
+                </div>
+                <button onClick={handleUploadComment} className="primaryButton">
+                  Leave comment
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}
