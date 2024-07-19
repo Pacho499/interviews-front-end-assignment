@@ -145,8 +145,8 @@ const RecipeDetail = () => {
           <div className="RecipeDetail-comments-container">
             <article>
               <h3>Comments</h3>
-              {recipe?.comments?.map((comment) => {
-                return <CommentBox commentData={comment} />;
+              {recipe?.comments?.map((comment, index) => {
+                return <CommentBox key={index} commentData={comment} />;
               })}
             </article>
             <div className="comment-container">

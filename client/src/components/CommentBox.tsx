@@ -14,9 +14,11 @@ const CommentBox = ({ commentData }: CommentBoxProps) => {
   return (
     <div className="comment-container" key={commentData.id}>
       <div>
-        {Array(commentData.rating).fill(
-          <FontAwesomeIcon icon={faStar} className="stars" />
-        )}
+        {Array(commentData.rating)
+          .fill(null)
+          .map((_, index) => (
+            <FontAwesomeIcon key={index} icon={faStar} className="stars" />
+          ))}
       </div>
       <p>{commentData.comment}</p>
       {renderDate()}

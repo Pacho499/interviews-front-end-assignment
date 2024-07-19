@@ -33,6 +33,7 @@ export interface IconInfoProps {
 
 export interface CommentBoxProps {
   commentData: Comment;
+  key: number;
 }
 
 export interface RatingInputProps {

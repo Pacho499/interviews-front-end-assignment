@@ -56,7 +56,6 @@ const NewRecipe = () => {
     setErrors(errFromFunction);
   };
 
-  console.log(errors);
   return (
     <>
       <Header />
