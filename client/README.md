@@ -38,21 +38,21 @@ To install and set up the project, follow these steps:
 
 1. Start the server. Check the README inside the server folder for instructions on how to start the server.
 
-1. Clone the project repository to your local directory.
+2. Clone the project repository to your local directory.
 
-1. From the root folder of the project, run the command:
+3. From the root folder of the project, run the command:
 
    ```bash
    cd client
    ```
 
-1. Once in the client folder, run the command:
+4. Once in the client folder, run the command:
 
    ```bash
    npm install
    ```
 
-1. After installing the dependencies, start the development server with the command:
+5. After installing the dependencies, start the development server with the command:
 
    ```bash
    npm run dev
