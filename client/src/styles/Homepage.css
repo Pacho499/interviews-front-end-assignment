@@ -1,0 +1,31 @@
+.homePage-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+  text-align: center;
+  gap: 2rem;
+}
+
+.homePage-cards-Container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.homepage-error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5rem;
+}
+
+/* From laptop */
+
+@media screen and (min-width: 1260px) {
+  .homePage-cards-Container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: 0;
+  }
+}

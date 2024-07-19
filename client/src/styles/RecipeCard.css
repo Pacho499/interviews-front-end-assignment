@@ -1,0 +1,80 @@
+.recipeCard-w-img-container {
+  width: 80%;
+  margin: auto;
+  border-radius: 1rem;
+  border: 3px solid var(--primary-color);
+  box-shadow: 4px 4px 4px rgb(109, 109, 109);
+  padding: 1rem;
+  text-align: start;
+}
+
+.recipeCard-img {
+  width: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 0.3rem;
+  margin-bottom: 0.4rem;
+  height: 20rem;
+}
+
+.recipeCard-infoContainer {
+  display: flex;
+}
+
+.recipeCard-title {
+  margin-bottom: 0.2rem;
+}
+
+.recipeCard-detailContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.ingredients {
+  margin-right: 4rem;
+}
+
+.recipeCard-detailContainer > ul {
+  margin-left: 1rem;
+}
+
+.recipeCard-btn {
+  text-decoration: none;
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+/* From Tablet */
+
+@media screen and (min-width: 768px) {
+  .recipeCard-w-img-container {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .recipeCard-img {
+    margin: 0;
+    max-width: 20rem;
+  }
+
+  .recipeCard-infoContainer {
+    gap: 2rem;
+    text-align: left;
+  }
+
+  .ingredients {
+    margin: 0;
+  }
+
+  .recipeCard-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .recipeCard-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}

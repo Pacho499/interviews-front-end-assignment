@@ -1,7 +1,7 @@
 <!---
 Hi! We're happy you opened this file, not everyone does!
-To let us know you did, paste a capybara picture 
-in the How to Run section 😊 
+To let us know you did, paste a capybara picture
+in the How to Run section 😊
 These will be extra points for you!
 -->
 
@@ -29,11 +29,11 @@ written out. Please, write there instructions on how to run your code: we will u
 
 Your work will be assessed according to several criteria. As an example, these include:
 
-* Code quality
-* Design Patterns
-* Project Structure
-* Work quality (commits, branches, workflow, tests, ...)
-* Provided Documentation
+- Code quality
+- Design Patterns
+- Project Structure
+- Work quality (commits, branches, workflow, tests, ...)
+- Provided Documentation
 
 #### A Friendly Reminder:
 
@@ -62,7 +62,7 @@ fewer constraints as possible on your work. We appreciate if you could record an
 together with any questions that you will ask in a real-world scenario. If you want to choose our stack instead, we
 generally work with TypeScript and React.
 
----   
+---
 
 ### Problem Domain
 
@@ -94,10 +94,69 @@ Design a form that allows users to add new recipes by providing details such as 
 instructions, cuisine type, and dietary preference and an image.
 
 ### Challenge #4: Recipe Details and Comments
+
 Develop a recipe details page where users can view the full recipe, including ingredients, instructions, and user
 comments. Enable users to add comments and rate the recipe, displaying the average rating and updating the list of
 comments.
 
+![alt text](https://www.zooplus.it/magazine/wp-content/uploads/2024/01/capibara.jpeg)
+
+# Recipe Book App
+
+### Description
+
+Recipe Book App is a web application that allows users to share and browse their own recipes. Users can add new recipes, filter existing ones, view recipe details, and leave comments.
+
+## Main feature (Challenge)
+
+1. **View Recipes** : Users can view all available recipes in the app.
+
+2. **Add Recipes**: Users can add their own recipes using a simple form.
+
+3. **Filter Recipes**: Users can filter recipes based on cuisine, difficulty and dietary preferences (e.g., vegetarian, gluten-free).
+
+4. **View Recipe Details**: Users can view the details of a single recipe and leave comments.
+
+## Technologies
+
+- **React**: Used for building the user interface.
+
+- **TypeScript**: Used to provide more stability to the code by adding types to classic JavaScript.
+
+- **Axios**: Used for making HTTP requests.
+
+- **CSS**: Used instead of Tailwind because, when used with proper class naming conventions, it can make the code cleaner.
+
+- **FontAwesome**: Used for Icons.
+
+- **Vite**: Used as the bundler.
+
+- **ESLint**: Used for maintaining consistent code style.
+
 ## How to run
 
-...
+To install and set up the project, follow these steps:
+
+1. Start the server. Check the README inside the server folder for instructions on how to start the server.
+
+2. Clone the project repository to your local directory.
+
+3. From the root folder of the project, run the command:
+
+   ```bash
+   cd client
+   ```
+
+4. Once in the client folder, run the command:
+
+   ```bash
+   npm install
+   ```
+
+5. After installing the dependencies, start the development server with the command:
+
+   ```bash
+   npm run dev
+   ```
+
+Now you can access the application in your browser at http://localhost:5173.

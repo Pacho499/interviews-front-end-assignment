@@ -1,0 +1,23 @@
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--secondary-color);
+  margin: 1rem 0;
+  padding: 1rem;
+  gap: 0.2rem;
+  border-radius: 10px;
+  box-shadow: 2px 4px 2px var(--primary-color);
+}
+
+.stars {
+  color: var(--primary-color);
+}
+
+.comment-container > p {
+  font-size: 1.2rem;
+}
+
+.comment-container > span {
+  font-size: 0.8rem;
+  text-align: right;
+}

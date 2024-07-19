@@ -1,0 +1,211 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+/* Colors */
+:root {
+  --primary-color: #ff5003;
+  --secondary-color: #002347;
+  --black-text-color: #1a1a1a;
+  --white-text-color: #eeeeee;
+  --background-color: #efefef;
+  --accent-color: #ff8e00;
+
+  color: #1a1a1a;
+  background-color: var(--background-color);
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+p {
+  font-size: 1rem;
+}
+
+/* buttons */
+
+.primaryButton {
+  background-color: var(--secondary-color);
+  color: var(--white-text-color);
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  width: 8rem;
+  margin: auto;
+  transition: border 300ms linear;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.primaryButton:hover {
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--primary-color)
+  );
+  background-size: 150% 150%;
+  border-color: var(--secondary-color);
+  transition: all 300ms linear;
+  animation: bgAnimated 2s infinite linear;
+}
+
+/* inputs */
+
+textarea {
+  resize: none;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.fileInput {
+  padding: 0.5rem;
+  gap: 0.5rem;
+  border: 2px solid var(--secondary-color);
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  width: 10rem;
+  transition: all 200ms linear;
+  text-align: center;
+  font-weight: bold;
+}
+
+.fileInput:hover {
+  background-color: var(--primary-color);
+  box-shadow: inset 2px 2px 2px black;
+  color: var(--white-text-color);
+}
+
+.input-error {
+  color: red;
+}
+
+.input-error > input {
+  border: 2px solid red;
+}
+
+.input-error > textarea {
+  border: 2px solid red;
+}
+
+.label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.label-error {
+  color: red;
+}
+
+.input {
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border-radius: 8px;
+  border: 2px solid var(--secondary-color);
+}
+
+.input:focus {
+  border: 2px solid var(--primary-color);
+}
+
+/* animations */
+
+.slideInLeft {
+  animation: slideIn 300ms linear;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(-100%, 0);
+  }
+  to {
+    transform: translate(0%, 0);
+  }
+}
+
+.slideInRight {
+  animation: slideInRight 300ms linear;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translate(100%, 0);
+  }
+  to {
+    transform: translate(0%, 0);
+  }
+}
+
+.slideOutRight {
+  animation: slideOutRight 300ms linear;
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+.slideOutLeft {
+  animation: slideOut 300ms linear;
+}
+
+@keyframes slideOut {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-100%, 0);
+  }
+}
+
+.bgAnimated {
+  animation: bgAnimated 2s infinite linear;
+}
+
+@keyframes bgAnimated {
+  0% {
+    background-position: 0 -50%;
+  }
+  50% {
+    background-position: 100% 20%;
+  }
+  100% {
+    background-position: 0 85%;
+  }
+}

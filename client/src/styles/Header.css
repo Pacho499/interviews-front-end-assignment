@@ -1,0 +1,64 @@
+/* mobile */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem;
+  background-color: var(--primary-color);
+}
+
+.header-menu-icon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid black;
+  color: var(--white-text-color);
+}
+
+.header-laptop-nav {
+  display: none;
+}
+
+/* laptop */
+
+@media screen and (min-width: 992px) {
+  .header-menu-icon {
+    display: none;
+  }
+
+  .header-profileImgContainer {
+    background-color: #bbbbbb;
+    padding: 0.5rem;
+    border: 1px solid black;
+    border-radius: 100%;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header {
+    display: flex;
+    width: 100vw;
+    background-color: var(--primary-color);
+    justify-content: space-between;
+    height: 8rem;
+    align-items: center;
+  }
+
+  .header-container {
+    display: flex !important;
+    align-items: center;
+    gap: 2rem;
+  }
+}

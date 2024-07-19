@@ -1,0 +1,28 @@
+.linkButton {
+  color: white;
+  text-decoration: none;
+  background-color: var(--secondary-color);
+  padding: 0.5rem;
+  border: 2px solid black;
+  border-radius: 10px;
+  transition: all 300ms linear;
+  max-width: 20rem;
+  font-weight: bold;
+}
+
+.linkButton:hover {
+  background: linear-gradient(
+    90deg,
+    var(--secondary-color),
+    var(--accent-color)
+  );
+  background-size: 150% 150%;
+  border: 2px solid var(--secondary-color);
+  padding: 0.5;
+  transition: all 300ms linear;
+  animation: bgAnimated 2s infinite linear;
+}
+
+.linkButton > p {
+  font-size: 1.4rem;
+}
