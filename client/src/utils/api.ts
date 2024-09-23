@@ -117,7 +117,7 @@ export const uploadRecipe = async ({
     },
   });
 
-  return window.location.replace(`/recipeDetail/${res.data.id}`);
+  return res.data.id;
 };
 
 export const uploadComment = async ({

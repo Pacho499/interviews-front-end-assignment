@@ -21,10 +21,10 @@ const Dropdown = ({
       // used radio and not checkbox to let user chose just one option for type of field
       const handlebehavior = (e: React.MouseEvent<HTMLInputElement>) => {
         if (value === option.id && !isForm) {
-          setFilter("");
+          setFilter("", `${inputName}Id`);
           e.currentTarget.checked = false;
         } else {
-          setFilter(e.currentTarget.value);
+          setFilter(e.currentTarget.value, `${inputName}Id`);
         }
       };
       return (

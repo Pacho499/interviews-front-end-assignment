@@ -18,7 +18,7 @@ export interface RecipeCardProps {
 export interface DroprdownProps {
   label: string;
   options: Cuisine[] | Difficulty[] | Diet[];
-  setFilter: (checkFromChild: string) => void;
+  setFilter: (checkFromChild: string, key: string) => void;
   inputName: string;
   isForm?: boolean;
   error?: boolean;

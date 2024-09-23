@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { uploadRecipe } from "../utils/api";
 import { FormErrors } from "../types/functionsParams";
+import { useNavigate } from "react-router-dom";
 
 const NewRecipe = () => {
   const [recipe, setRecipe] = useState<RecipeForm>({
@@ -20,36 +21,35 @@ const NewRecipe = () => {
     difficultyId: "",
     image: null,
   });
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState<FormErrors>({});
   const context = useContext(Context);
 
-  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRecipe({ ...recipe, name: e.target.value });
-  };
+  const handleInputs = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    key: string
+  ) => {
+    const { type, value } = e.target;
 
-  const handleInstructions = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setRecipe({ ...recipe, instructions: e.target.value });
-  };
-
-  const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRecipe({ ...recipe, image: e.target.files && e.target.files[0] });
+    if (type !== "file") {
+      setRecipe((oldRecipe) => ({ ...oldRecipe, [key]: value }));
+    } else {
+      const { files } = e.target as HTMLInputElement;
+      setRecipe((oldRecipe) => ({
+        ...oldRecipe,
+        [key]: files && files[0],
+      }));
+    }
   };
 
   const handleIngredients = (IngredientsFromChild: string[]) => {
     setRecipe({ ...recipe, ingredients: IngredientsFromChild });
   };
 
-  const handleDiet = (dietFromChild: string) => {
-    setRecipe({ ...recipe, dietId: dietFromChild });
-  };
-
-  const handleCuisine = (cuisineFromChiled: string) => {
-    setRecipe({ ...recipe, cuisineId: cuisineFromChiled });
-  };
-
-  const handleDifficulty = (difficultyFromChild: string) => {
-    setRecipe({ ...recipe, difficultyId: difficultyFromChild });
+  const handleCheckboxes = (valueFromChild: string, key: string) => {
+    setRecipe((oldRecipe) => ({ ...oldRecipe, [key]: valueFromChild }));
   };
 
   const handleErrors = (errFromFunction: FormErrors) => {
@@ -67,7 +67,7 @@ const NewRecipe = () => {
               Name *
             </label>
             <input
-              onChange={handleName}
+              onChange={(e) => handleInputs(e, "name")}
               className="input"
               type="text"
               value={recipe.name}
@@ -88,7 +88,7 @@ const NewRecipe = () => {
               id="instructions"
               rows={10}
               required
-              onChange={handleInstructions}
+              onChange={(e) => handleInputs(e, "instructions")}
             ></textarea>
           </div>
           <FormIngredients
@@ -98,7 +98,12 @@ const NewRecipe = () => {
           />
           <div className="input-container">
             <p className={`label ${errors.image && "label-error"}`}>Image *</p>
-            <input type="file" id="image" onChange={handleImage} hidden />
+            <input
+              type="file"
+              id="image"
+              onChange={(e) => handleInputs(e, "image")}
+              hidden
+            />
             <label className="fileInput" htmlFor="image">
               Choose image
             </label>
@@ -106,7 +111,7 @@ const NewRecipe = () => {
           <Dropdown
             label="Type of Cuisine *"
             options={context.cuisines}
-            setFilter={handleCuisine}
+            setFilter={handleCheckboxes}
             inputName="cuisine"
             isForm
             error={errors?.cuisineId}
@@ -115,7 +120,7 @@ const NewRecipe = () => {
           <Dropdown
             label="Type of Diet *"
             options={context.diets}
-            setFilter={handleDiet}
+            setFilter={handleCheckboxes}
             inputName="diet"
             isForm
             error={errors?.dietId}
@@ -124,7 +129,7 @@ const NewRecipe = () => {
           <Dropdown
             label="Difficulty *"
             options={context.difficulties}
-            setFilter={handleDifficulty}
+            setFilter={handleCheckboxes}
             inputName="difficulty"
             isForm
             error={errors?.difficultyId}
@@ -135,7 +140,8 @@ const NewRecipe = () => {
             className="primaryButton"
             onClick={async (e) => {
               e.preventDefault();
-              await uploadRecipe({ recipe, handleErrors });
+              const recipeId = await uploadRecipe({ recipe, handleErrors });
+              navigate(`/recipeDetail/${recipeId}`);
             }}
           >
             <p>Add Recipe</p>

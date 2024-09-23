@@ -45,16 +45,8 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
 
   // handle all filters
 
-  const setCuisineFilter = (checkFromChild: string) => {
-    setFilters({ ...filters, cuisineId: checkFromChild });
-  };
-
-  const setDietsFilter = (checkFromChild: string) => {
-    setFilters({ ...filters, dietId: checkFromChild });
-  };
-
-  const setDifficultyFilter = (checkFromChild: string) => {
-    setFilters({ ...filters, difficultyId: checkFromChild });
+  const handleCheckboxes = (valueFromChild: string, key: string) => {
+    setFilters((oldFilters) => ({ ...oldFilters, [key]: valueFromChild }));
   };
 
   // call for filterRecipe
@@ -105,21 +97,21 @@ const Filters = ({ handleRecipeToRender, firstCallRecipes }: FiltersProps) => {
           <Dropdown
             label="Type of Cuisine"
             options={context.cuisines}
-            setFilter={setCuisineFilter}
+            setFilter={handleCheckboxes}
             inputName="cuisine"
             value={filters.cuisineId}
           />
           <Dropdown
             label="Type of Diet"
             options={context.diets}
-            setFilter={setDietsFilter}
-            inputName="diets"
+            setFilter={handleCheckboxes}
+            inputName="diet"
             value={filters.dietId}
           />
           <Dropdown
             label="Difficulty"
             options={context.difficulties}
-            setFilter={setDifficultyFilter}
+            setFilter={handleCheckboxes}
             inputName="difficulty"
             value={filters.difficultyId}
           />
