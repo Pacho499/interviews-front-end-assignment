@@ -25,6 +25,7 @@ const Homepage = () => {
       const newRecipes = await getRecipes({ page });
       if (newRecipes.length > 0) {
         setRecipes([...recipes, ...newRecipes]);
+        setRecipeToRender([...recipes, ...newRecipes]);
       } else {
         setFetchedAll(true);
       }
@@ -33,10 +34,6 @@ const Homepage = () => {
 
     fetchRecipes();
   }, [page]);
-
-  useEffect(() => {
-    setRecipeToRender(recipes);
-  }, [recipes]);
 
   const handleRecipeToRender = (valuesFromChild: HandleFiltersHP) => {
     setIsFiltered(valuesFromChild.isFilterd);
